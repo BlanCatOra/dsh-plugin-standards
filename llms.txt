@@ -1,0 +1,37 @@
+# dsh-plugin-standards
+
+> DSH（DeepSeek Harness）插件开发的规范合集：界面组件与设置页放哪、面向 agent 的仓库
+> 怎么写文档、发布前要走哪六步。每条结论都来自本机实测故障，不是通用工程道理。
+
+这是**纯文档仓库**，没有可执行代码。三份规范各自独立、互不替代。
+
+## 文档
+
+- [docs/UI-STANDARDS.md](./docs/UI-STANDARDS.md) — **写界面时读**：必须用 DSH 原生
+  primitives、设置注册到 `plugins.bundle.config`、哪些写法会导致白屏
+- [docs/AGENT-FACING-STANDARDS.md](./docs/AGENT-FACING-STANDARDS.md) — **建仓库/补文档时读**：
+  `AGENTS.md` 与 `llms.txt` 的分工、README 指路文案、6 块必需内容
+- [docs/RELEASE-STANDARDS.md](./docs/RELEASE-STANDARDS.md) — **发布前逐项执行**：
+  文档齐套 → 全面脱敏（含 git 历史）→ 测试可复现 → 打包核对 → 推前硬闸 → 授权发布
+
+## 快速自检
+
+```sh
+sh check.sh     # 三份文档存在 + README 索引有效 + 规范自身脱敏
+```
+
+## 给 agent 的用法
+
+- 在插件仓库里干活：先读该仓库的 `AGENTS.md`，再按需读本仓库对应那份规范；
+- 要发布：把 `docs/RELEASE-STANDARDS.md` §5 的 checklist 复制进该仓库的
+  `docs/RELEASING.md`，逐项执行；
+- **不要**把某次事故的临时绕过方案写成规范，只写「为什么错」与「正确做法」。
+
+## 边界
+
+- 这是文档仓库，不提供 CLI / 库 / 运行时；
+- 规范会随实测更新，**不写会被后续变更改变的数字**（如"87 项测试"必然过期）。
+
+## 许可
+
+MIT
